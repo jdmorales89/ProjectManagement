@@ -21,7 +21,7 @@ A minimal, clean, dark-mode project management app tailored for solo devs and sm
 
 ## 🚀 Live Demo
 
-🔗 **[View Live App](https://your-app.vercel.app)** _(Update this link after deployment)_
+🔗 **[View Live App](https://project-management-lemon-mu.vercel.app)**
 
 ## 📦 Tech Stack
 
