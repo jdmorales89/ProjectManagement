@@ -129,11 +129,11 @@ export default function KanbanBoard() {
       </div>
 
       <div className="columns">
-        {[
-          { key: "todo", label: "Todo" },
-          { key: "inprogress", label: "In Progress" },
-          { key: "done", label: "Complete" },
-        ].map(col => (
+        {([
+          { key: "todo" as const, label: "Todo" },
+          { key: "inprogress" as const, label: "In Progress" },
+          { key: "done" as const, label: "Complete" },
+        ] as const).map(col => (
           <div
             key={col.key}
             className="column"
@@ -153,7 +153,7 @@ export default function KanbanBoard() {
                   onDragStart={(e) => onDragStart(e, col.key, task.id)}
                 >
                   <div className="cardTitle" contentEditable suppressContentEditableWarning
-                    onBlur={(e) => editTask(col.key as any, task.id, { title: e.currentTarget.textContent || "" })}
+                    onBlur={(e) => editTask(col.key, task.id, { title: e.currentTarget.textContent || "" })}
                   >{task.title}</div>
 
                   <div className="metaRow">
@@ -167,15 +167,15 @@ export default function KanbanBoard() {
 
                   {task.note ? (
                     <div className="cardNote" contentEditable suppressContentEditableWarning
-                      onBlur={(e) => editTask(col.key as any, task.id, { note: e.currentTarget.textContent || "" })}
+                      onBlur={(e) => editTask(col.key, task.id, { note: e.currentTarget.textContent || "" })}
                     >{task.note}</div>
                   ) : (
-                    <button className="ghost tiny" onClick={() => editTask(col.key as any, task.id, { note: "" })}>Add note</button>
+                    <button className="ghost tiny" onClick={() => editTask(col.key, task.id, { note: "" })}>Add note</button>
                   )}
 
                   <div className="cardActions">
-                    <button className="ghost tiny" onClick={() => editTask(col.key as any, task.id, { priority: (task.priority==='high'?'med':task.priority==='med'?'low':'high') })}>Cycle priority</button>
-                    <button className="ghost tiny danger" onClick={() => deleteTask(col.key as any, task.id)}>Delete</button>
+                    <button className="ghost tiny" onClick={() => editTask(col.key, task.id, { priority: (task.priority==='high'?'med':task.priority==='med'?'low':'high') })}>Cycle priority</button>
+                    <button className="ghost tiny danger" onClick={() => deleteTask(col.key, task.id)}>Delete</button>
                   </div>
                 </article>
               ))}

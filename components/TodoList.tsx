@@ -23,11 +23,11 @@ export default function TodoList() {
     setText("");
   }
 
-  function toggle(id) {
+  function toggle(id: string) {
     setTodos(prev => prev.map(x => x.id === id ? { ...x, done: !x.done } : x));
   }
 
-  function remove(id) {
+  function remove(id: string) {
     setTodos(prev => prev.filter(x => x.id !== id));
   }
 
